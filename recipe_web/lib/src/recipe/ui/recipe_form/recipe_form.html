@@ -1,0 +1,83 @@
+<!--
+ Copyright (c) 2017, ppolasek. All rights reserved. Use of this source code
+ is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+
+<!--{{diagnostic}}-->
+<form class="form-horizontal" *ngIf="recipe != null"
+      (ngSubmit)="onSubmitClick()"
+      #recipeForm="ngForm">
+   <div class="form-group form-group-sm">
+        <label for="recipeName">Name</label>
+        <input type="text" class="form-control" id="recipeName" required
+               [(ngModel)]="recipe.recipeName"
+               #name="ngForm"
+               [ngClass]="setCssValidityClass(name)"
+               ngControl="name">
+    </div>
+    <div class="recipe-optional">
+        <div class="form-group form-group-sm">
+            <label>Cookbook Name</label>
+            <div class="form-inline">
+                <div [hidden]="!showCookbooks" style="display: inline;">
+                    <select class="form-control" id="cookbookSelect"
+                            [(ngModel)]="cookbookTitle"
+                            #cookbook="ngForm" [ngClass]="setCssValidityClass(cookbook)"
+                            ngControl="cookbook">
+                        <option value="">Select...</option>
+                        <option *ngFor="let cookbook of cookbookList">{{cookbook.name}}</option>
+                    </select>
+                </div>
+                <div style="display: inline;">
+                    <input type="text" class="form-control" id="cookbookName" style="width: 200px;"
+                           placeholder="Or create a new cookbook"
+                           ngControl="cookbookName"
+                           [(ngModel)]="cookbookName">
+                </div>
+                <div style="display: inline;">
+                    <input type="text" class="form-control" id="pageNrs"
+                           [(ngModel)]="recipe.pageNrs"
+                           ngControl="pageNrs"
+                           placeholder="page numbers">
+                </div>
+            </div>
+        </div>
+    </div>
+    <label>OR</label>
+    <div class="recipe-optional">
+        <div class="form-group form-group-sm">
+            <label for="recipeUrl">Recipe URL</label>
+            <input type="text" class="form-control" id="recipeUrl"
+                   [(ngModel)]="recipe.recipeUrl"
+                   ngControl="recipeUrl">
+        </div>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="recipetags">Tags</label>
+        <div class="display: inline-block;">
+            <input class="form-control" #recipeTagListRef id="recipetags"
+                   list="tagDatalist"
+                   name="tagInput"
+                   style="width: 150px;"
+                   [(ngModel)]="recipetag"
+                   ngControl="tagListCtrl"
+                   (keyup)="onTagKeyUp($event)"
+                   (input)="onTagInput($event)">
+            <div *ngFor="let temptag of recipe.recipeTags" style="display: inline-block;">
+                <recipe-tag [tag]="temptag" (tagEvent)="onTagEvent($event)"></recipe-tag>
+            </div>
+        </div>
+        <datalist id="tagDatalist">
+            <option *ngFor="let tag of allTags" value="{{ tag.tagName }}"></option>
+        </datalist>
+    </div>
+    <div class="form-group form-group-sm">
+        <label for="notes">Notes</label>
+        <textarea class="form-control" rows="4" id="notes"
+                  [(ngModel)]="recipe.notes"
+                  ngControl="notes"></textarea>
+    </div>
+    <input type="button" class="btn btn-default btn-sm" value="Save"
+           (click)="onSubmitClick()"
+           [disabled]="!recipe.isValid">
+</form>

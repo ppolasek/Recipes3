@@ -1,0 +1,32 @@
+*~
+*.swp
+tags/
+target/
+bin/
+workspace.xml
+.idea
+**/*.iml
+data/
+.name
+.classpath
+.project
+.settings/
+build/
+/node_modules
+**/*.log
+ide/
+maven-lib/
+.pub/
+recipe_server/logs/*.log
+.packages
+/toh-5
+
+# Files and directories created by pub
+/learning/.packages
+/learning/.pub/
+/learning/build/
+# Remove the following pattern if you wish to check in your lock file
+pubspec.lock
+
+# Directory created by dartdoc
+doc/api/

@@ -1,0 +1,47 @@
+<!--
+ Copyright (c) 2017, ppolasek. All rights reserved. Use of this source code
+ is governed by a BSD-style license that can be found in the LICENSE file.
+-->
+
+<div class="mainpage border-brown">
+  <div class="main-content border-red">
+    <div class="recipe-header-block">
+      <div class="home-link">
+        <a [routerLink]="['/Home']">Home</a>
+      </div>
+      <div class="recipe-heading">
+        <header class="recipe-head">
+          <h1>My Favorite Recipes3</h1>
+        </header>
+        <div class="recipe-head-desc">
+          Organize all your favorite recipes!
+        </div>
+      </div>
+    </div>
+    <div class="main-body">
+      <div class="main-links layout vertical">
+        <div class="layout horizontal button-bar">
+          <button class="btn btn-info btn-sm" type="button" #openButton (click)="onAddClick()">Add New Recipe</button>
+          <button class="btn btn-info btn-sm" type="button" #searchButton [routerLink]="['Search']">Search</button>
+        </div>
+        <div class="main-lists layout vertical">
+          <h3>Recipes</h3>
+          <added-recently id="addedRecently" [listSize]="5"></added-recently>
+          <most-viewed id="mostViewed" [listSize]="5"></most-viewed>
+        </div>
+      </div>
+      <div class="viewing-area border-orange">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <footer class="recipe-footer">
+      Copyright (c) 2017, Phil Polasek. All rights reserved.
+    </footer>
+  </div>
+</div>
+<my-dialog #addRecipeDialog id="addRecipeDialog"
+           heading="New Recipe">
+  <recipe-form [recipe]="recipe"
+               [dialog]="addRecipeDialog">
+  </recipe-form>
+</my-dialog>

@@ -1,0 +1,12 @@
+/*
+ * Copyright (c) 2017, ppolasek. All rights reserved. Use of this source code
+ * is governed by a BSD-style license that can be found in the LICENSE file.
+ */
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}

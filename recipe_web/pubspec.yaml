@@ -1,0 +1,35 @@
+name: recipe_web
+description: My Recipes flutter app ported to Angular Dart.
+version: 2.0.3
+author: ppolasek <ppolasek@users.noreply.github.com>
+
+environment:
+  sdk: '>=1.24.2 <2.0.0'
+
+dependencies:
+  angular: "^4.0.0"
+  angular_forms: "^1.0.0"
+#  angular_components: "^0.5.1"
+  angular_router: "^1.0.2"
+  logging: "^0.11.3+1"
+##Package html5lib has no versions that match >=0.11.0+1 <0.13.0 derived from:
+##- bootstrap 4.0.0-alpha.6 depends on version >=0.11.0+1 <0.13.0
+#  bootstrap: "^4.0.0-alpha.6"
+
+dev_dependencies:
+  angular_test: "^1.0.0"
+  browser: "^0.10.0"
+  dart_to_js_script_rewriter: "^1.0.3"
+  test: "^0.12.21"
+
+transformers:
+- angular:
+    entry_points:
+    - web/main.dart
+    - test/**_test.dart
+- test/pub_serve:
+    $include: test/**_test.dart
+- dart_to_js_script_rewriter
+#- bootstrap:
+#    url: //maxcdn.bootstrapcdn.com/bootstrap/{{version}}
+#    version: "4.0.0-alpha.6"

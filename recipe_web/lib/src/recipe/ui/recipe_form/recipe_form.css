@@ -1,0 +1,17 @@
+/*
+ * Copyright (c) 2017, ppolasek. All rights reserved. Use of this source code
+ * is governed by a BSD-style license that can be found in the LICENSE file.
+ */
+
+.formcontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.recipe-optional {
+    margin-left: 20px;
+}
+
+.recipe-input {
+    width: 200px;
+}
