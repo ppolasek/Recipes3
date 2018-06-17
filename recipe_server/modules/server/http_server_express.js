@@ -28,7 +28,7 @@ exports.start_server = function (callback) {
     try {
 
         // create application/json parser
-        var jsonParser = bodyParser.json()
+        var jsonParser = bodyParser.json();
 
         var nodejs_port = my_config.nodejs_port();
 
