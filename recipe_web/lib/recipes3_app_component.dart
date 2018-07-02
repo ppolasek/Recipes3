@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular/angular.dart';
-import 'package:angular_router/angular_router.dart';
+//import 'package:angular_router/angular_router.dart';
 import 'package:recipe_web/src/common/components/dialog/dialog.dart';
 import 'package:recipe_web/src/common/components/recipe_view/recipe_view.dart';
 import 'package:recipe_web/src/common/components/selector_directive.dart';
@@ -18,14 +18,15 @@ import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
 import 'package:recipe_web/src/recipe/common/recipe_service.dart';
 import 'package:recipe_web/src/recipe/ui/recipe_tag/recipe_tag.dart';
 import 'package:recipe_web/src/common/components/search/search.dart';
+import 'package:recipe_web/src/routes.dart';
 
 @Component(
   selector: 'recipes-app',
   styleUrls: const ['recipes3_app_component.css'],
   templateUrl: 'recipes3_app_component.html',
   directives: const [
-    CORE_DIRECTIVES,
-    ROUTER_DIRECTIVES,
+//    CORE_DIRECTIVES,
+//    ROUTER_DIRECTIVES,
     RecipeFormComponent,
     RecipeTagComponent,
     RecipeViewComponent,
@@ -44,15 +45,16 @@ import 'package:recipe_web/src/common/components/search/search.dart';
     const Provider(SelectorDirective, useClass: SelectorDirective),
   ],
 )
-@RouteConfig(const [
-  const Redirect(path: '/', redirectTo: const ['Home']),
-  const Route(path: '/home', name: 'Home', component: DefaultViewComponent),
-  const Route(path: '/search', name: 'Search', component: RecipeSearchComponent),
-  const Route(path: '/detail/:id', name: 'Detail', component: RecipeViewComponent),
-  const Route(path: '/hover/:id', name: 'Hover', component: RecipeViewComponent),
-])
+//@RouteConfig(const [
+//  const Redirect(path: '/', redirectTo: const ['Home']),
+//  const Route(path: '/home', name: 'Home', component: DefaultViewComponent),
+//  const Route(path: '/search', name: 'Search', component: RecipeSearchComponent),
+//  const Route(path: '/detail/:id', name: 'Detail', component: RecipeViewComponent),
+//  const Route(path: '/hover/:id', name: 'Hover', component: RecipeViewComponent),
+//])
 class Recipes3AppComponent implements OnInit {
   RecipeTag sampleTag = new RecipeTag.fromValues('Mexican');
+  final Routes routes;
 
   @ViewChild('addRecipeDialog')
   DialogComponent addRecipeDialogComp;
@@ -61,7 +63,7 @@ class Recipes3AppComponent implements OnInit {
 
   final Recipes3Logger _log;
 
-  Recipes3AppComponent(this._log) {
+  Recipes3AppComponent(this._log, this.routes) {
     _log.loggerName = 'Recipes3AppComponent';
   }
 

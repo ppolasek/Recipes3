@@ -21,7 +21,8 @@ void main() {
 //  const contextPath = '/Recipes3';
 //  const servletPath = '/services';
 
-  bootstrap(Recipes3AppComponent, [
+  runApp(ng.AppComponentNgFactory, [
+//  bootstrap(Recipes3AppComponent, [
     provide(BrowserClient, useFactory: () => new BrowserClient(), deps: []),
     provide(Recipes3AppConfig,
         useFactory: () => new Recipes3AppConfig('http://localhost:8191',

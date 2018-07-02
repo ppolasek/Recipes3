@@ -31,7 +31,8 @@
         </div>
       </div>
       <div class="viewing-area border-orange">
-        <router-outlet></router-outlet>
+        <router-outlet [routes]="routes.all"></router-outlet>
+        <!--<router-outlet></router-outlet>-->
       </div>
     </div>
     <footer class="recipe-footer">
