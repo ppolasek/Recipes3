@@ -38,6 +38,6 @@ class WebLoggerService extends LoggerService {
 //    print('WebLoggerService.log temp.toJson() = ${temp.toJson()}');
 //    print('WebLoggerService.log JSON.encode(temp) = ${JSON.encode(temp)}');
 
-    _http.post(theUrl, headers: _headers, body: JSON.encode(temp));
+    _http.post(theUrl, headers: _headers, body: json.encode(temp));
   }
 }

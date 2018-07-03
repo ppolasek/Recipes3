@@ -36,6 +36,7 @@ class Routes {
 
   final List<RouteDefinition> all = [
 //    RouteDefinition(path: paths.heroes.path, component: hlct.HeroListComponentNgFactory),
+    RouteDefinition.redirect(path: '', redirectTo: paths.home.toUrl()),
     RouteDefinition(path: paths.home.path, component: defview.DefaultViewComponentNgFactory),
     RouteDefinition(path: paths.search.path, component: searchview.RecipeSearchComponentNgFactory),
     RouteDefinition(path: paths.detail.path, component: searchview.RecipeViewComponentNgFactory),

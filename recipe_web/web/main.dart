@@ -3,11 +3,18 @@
 
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
-import 'package:http/browser_client.dart';
 import 'package:logging/logging.dart';
 
-import 'package:recipe_web/recipes3_app_component.dart';
-import 'package:recipe_web/src/common/model.dart';
+// ignore: uri_has_not_been_generated
+import 'package:recipe_web/recipes3_app_component.template.dart' as recipes3;
+
+// ignore: uri_has_not_been_generated
+import 'main.template.dart' as self;
+
+@GenerateInjector(
+  routerProvidersHash, // You can use routerProviders in production
+)
+final InjectorFactory injector = self.injector$Injector;
 
 void main() {
   print('main.main()');
@@ -20,17 +27,17 @@ void main() {
 //  const serverUrl = 'http://localhost:9191';
 //  const contextPath = '/Recipes3';
 //  const servletPath = '/services';
-
-  runApp(ng.AppComponentNgFactory, [
+  
+  runApp(recipes3.Recipes3AppComponentNgFactory, createInjector: injector);
 //  bootstrap(Recipes3AppComponent, [
-    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: []),
-    provide(Recipes3AppConfig,
-        useFactory: () => new Recipes3AppConfig('http://localhost:8191',
-            '/Recipes3',
-            '/services'),
-        deps: []),
-    ROUTER_PROVIDERS,
-    // Remove next line in production
-    provide(LocationStrategy, useClass: HashLocationStrategy),
-  ]);
+//    provide(BrowserClient, useFactory: () => new BrowserClient(), deps: []),
+//    provide(Recipes3AppConfig,
+//        useFactory: () => new Recipes3AppConfig('http://localhost:8191',
+//            '/Recipes3',
+//            '/services'),
+//        deps: []),
+//    ROUTER_PROVIDERS,
+//    // Remove next line in production
+//    provide(LocationStrategy, useClass: HashLocationStrategy),
+//  ]);
 }

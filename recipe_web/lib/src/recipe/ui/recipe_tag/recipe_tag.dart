@@ -11,7 +11,7 @@ import 'package:recipe_web/src/logger/logger.dart';
   selector: 'recipe-tag',
   styleUrls: const ['recipe_tag.css'],
   templateUrl: 'recipe_tag.html',
-  directives: const [COMMON_DIRECTIVES],
+  directives: const [coreDirectives],
   providers: const [],
 )
 class RecipeTagComponent implements OnInit {

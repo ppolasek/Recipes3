@@ -52,10 +52,10 @@ class RecipeUtil {
     }
   }
 
-  static addDateTimeIfNotNull(Map jsonMap, String key, DateTime value) {
+  static addDateTimeIfNotNull(Map jsonMap, String key, dynamic value) {
     if (value != null) {
       jsonMap.putIfAbsent(key, () {
-        var temp = JSON.encode(value, toEncodable: _dateTimeEncoder);
+        var temp = json.encode(value, toEncodable: _dateTimeEncoder);
         if (temp.substring(0, 1) == '"') {
           temp = temp.substring(1, temp.length - 1);
         }
@@ -64,7 +64,7 @@ class RecipeUtil {
     }
   }
 
-  static dynamic _dateTimeEncoder(DateTime item) {
+  static dynamic _dateTimeEncoder(dynamic item) {
     if (item is DateTime) {
       return item.toIso8601String();
     }

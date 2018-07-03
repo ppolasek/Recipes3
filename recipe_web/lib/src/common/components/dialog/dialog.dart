@@ -11,7 +11,7 @@ import 'package:recipe_web/src/recipe/ui/recipe_tag/recipe_tag.dart';
   styleUrls: const ['dialog.css'],
   templateUrl: 'dialog.html',
   directives: const [
-    COMMON_DIRECTIVES,
+    coreDirectives,
     RecipeTagComponent,
   ],
   providers: const [],
@@ -32,15 +32,6 @@ class DialogComponent implements OnInit {
 
   @Input()
   String buttonLabel = '';
-
-  @ViewChild('myModalDialog')
-  ElementRef myModalDialog;
-  
-  @ViewChild('openButton')
-  ElementRef openButton;
-
-  @ViewChild('closeButton')
-  ElementRef closeButton;
 
   bool visible = false;
   

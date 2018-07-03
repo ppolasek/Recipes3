@@ -15,7 +15,7 @@ import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
   styleUrls: const ['recipe_view.css'],
   templateUrl: 'recipe_view.html',
   directives: const [
-    CORE_DIRECTIVES,
+    coreDirectives,
     DialogComponent,
     RecipeFormComponent,
   ],

@@ -15,7 +15,7 @@ import 'package:recipe_web/src/recipe/common/recipe_service.dart';
   styleUrls: const ['added_recently.css'],
   templateUrl: 'added_recently.html',
   directives: const [
-    CORE_DIRECTIVES,
+    coreDirectives,
     RecipeListComponent,
   ],
   providers: const [

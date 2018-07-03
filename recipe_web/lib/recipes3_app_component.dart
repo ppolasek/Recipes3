@@ -2,7 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular/angular.dart';
-//import 'package:angular_router/angular_router.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:recipe_web/src/common/components/dialog/dialog.dart';
 import 'package:recipe_web/src/common/components/recipe_view/recipe_view.dart';
 import 'package:recipe_web/src/common/components/selector_directive.dart';
@@ -25,8 +25,8 @@ import 'package:recipe_web/src/routes.dart';
   styleUrls: const ['recipes3_app_component.css'],
   templateUrl: 'recipes3_app_component.html',
   directives: const [
-//    CORE_DIRECTIVES,
-//    ROUTER_DIRECTIVES,
+    coreDirectives,
+    routerDirectives,
     RecipeFormComponent,
     RecipeTagComponent,
     RecipeViewComponent,
@@ -36,6 +36,7 @@ import 'package:recipe_web/src/routes.dart';
     DefaultViewComponent,
     DialogComponent,
   ],
+  pipes: [commonPipes],
   providers: const [
     const Provider(CookbookService, useClass: WebCookbookService),
     const Provider(RecipeService, useClass: WebRecipeService),
@@ -45,13 +46,6 @@ import 'package:recipe_web/src/routes.dart';
     const Provider(SelectorDirective, useClass: SelectorDirective),
   ],
 )
-//@RouteConfig(const [
-//  const Redirect(path: '/', redirectTo: const ['Home']),
-//  const Route(path: '/home', name: 'Home', component: DefaultViewComponent),
-//  const Route(path: '/search', name: 'Search', component: RecipeSearchComponent),
-//  const Route(path: '/detail/:id', name: 'Detail', component: RecipeViewComponent),
-//  const Route(path: '/hover/:id', name: 'Hover', component: RecipeViewComponent),
-//])
 class Recipes3AppComponent implements OnInit {
   RecipeTag sampleTag = new RecipeTag.fromValues('Mexican');
   final Routes routes;

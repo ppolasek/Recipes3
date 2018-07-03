@@ -16,7 +16,7 @@ import 'package:recipe_web/src/recipe/common/recipe_service.dart';
   styleUrls: const ['most_viewed.css'],
   templateUrl: 'most_viewed.html',
   directives: const [
-    CORE_DIRECTIVES,
+    coreDirectives,
     RecipeListComponent,
   ],
   providers: const [

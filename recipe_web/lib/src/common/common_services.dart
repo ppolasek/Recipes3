@@ -50,7 +50,7 @@ class WebService {
       }
     }
 
-    var encodedPayload = JSON.encode(payload);
+    var encodedPayload = json.encode(payload);
     _log.finest('makeTheCall() encodedPayload = $encodedPayload');
 
     try {
@@ -93,7 +93,7 @@ class WebService {
     }
   }
 
-  dynamic _extractData(Response resp) => JSON.decode(resp.body);
+  dynamic _extractData(Response resp) => json.decode(resp.body);
 //  dynamic _extractData(Response resp) => JSON.decode(resp.body)['data'];
 
   _handleError(String theUrl, Object encodedPayload, Error e, StackTrace stackTrace) {

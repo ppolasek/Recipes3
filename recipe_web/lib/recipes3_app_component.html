@@ -7,7 +7,7 @@
   <div class="main-content border-red">
     <div class="recipe-header-block">
       <div class="home-link">
-        <a [routerLink]="['/Home']">Home</a>
+        <a [routerLink]="routes.home.toUrl()" routerLinkActive="active">Home</a>
       </div>
       <div class="recipe-heading">
         <header class="recipe-head">
@@ -21,8 +21,10 @@
     <div class="main-body">
       <div class="main-links layout vertical">
         <div class="layout horizontal button-bar">
-          <button class="btn btn-info btn-sm" type="button" #openButton (click)="onAddClick()">Add New Recipe</button>
-          <button class="btn btn-info btn-sm" type="button" #searchButton [routerLink]="['Search']">Search</button>
+          <button #openButton   class="btn btn-info btn-sm" type="button" (click)="onAddClick()">Add New Recipe</button>
+          <button #searchButton class="btn btn-info btn-sm" type="button"
+                  [routerLink]="routes.search.toUrl()"
+                  routerLinkActive="active">Search</button>
         </div>
         <div class="main-lists layout vertical">
           <h3>Recipes</h3>

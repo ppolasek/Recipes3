@@ -6,7 +6,7 @@ import 'package:angular/angular.dart';
 @Component(
   selector: 'default-view',
   templateUrl: 'default_view.html',
-  directives: const [CORE_DIRECTIVES],
+  directives: const [coreDirectives],
   providers: const [],
 )
 class DefaultViewComponent {

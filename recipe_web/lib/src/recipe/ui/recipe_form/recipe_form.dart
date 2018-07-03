@@ -19,7 +19,7 @@ import 'package:recipe_web/src/recipe/ui/recipe_tag/recipe_tag.dart';
   styleUrls: const ['recipe_form.css'],
   templateUrl: 'recipe_form.html',
   directives: const [
-    CORE_DIRECTIVES,
+    coreDirectives,
     formDirectives,
     RecipeTagComponent,
   ],
