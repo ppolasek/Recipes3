@@ -38,6 +38,7 @@ import 'package:recipe_web/src/routes.dart';
   ],
   pipes: [commonPipes],
   providers: const [
+    ClassProvider(WebCookbookService),
     const Provider(CookbookService, useClass: WebCookbookService),
     const Provider(RecipeService, useClass: WebRecipeService),
     const Provider(LoggerService, useClass: WebLoggerService),

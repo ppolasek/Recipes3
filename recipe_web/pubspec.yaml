@@ -4,23 +4,22 @@ version: 2.0.3
 author: ppolasek <ppolasek@users.noreply.github.com>
 
 environment:
-  sdk: '>=2.0.0-dev.56.0 <2.0.0'
+  sdk: '>=2.0.0-dev.68.0 <3.0.0'
 
 dependencies:
-  angular: "^5.0.0-alpha+15"
-  angular_forms: "^1.0.0"
-  angular_router: "^2.0.0-alpha"
+  angular: "^5.0.0-beta"
+  angular_forms: "^2.0.0-beta"
+  angular_router: "^2.0.0-alpha+15"
 #  angular_components: "^0.5.1"
   logging: "^0.11.3+1"
-##Package html5lib has no versions that match >=0.11.0+1 <0.13.0 derived from:
-##- bootstrap 4.0.0-alpha.6 depends on version >=0.11.0+1 <0.13.0
-#  bootstrap: "^4.0.0-alpha.6"
-
+  http: "^0.11.0"
+  stream_transform: "^0.0.6"
+  
 dev_dependencies:
-  build_runner: "^0.8.10"
+  build_runner: "^0.9.0"
   build_test: "^0.10.2"
   build_web_compilers: "^0.4.0"
 #  angular_test: "^1.0.0"
-  test: "^0.12.30"
+  test: "^1.0.0"
 
 transformers:

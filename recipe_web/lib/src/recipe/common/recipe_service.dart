@@ -3,7 +3,7 @@
 
 import 'dart:async';
 import 'package:angular/angular.dart';
-import 'package:http/browser_client.dart';
+import 'package:http/http.dart';
 
 import 'package:recipe_web/src/logger/logger.dart';
 import 'package:recipe_web/src/common/model.dart';
@@ -13,7 +13,7 @@ import 'package:recipe_web/src/common/common_services.dart';
 ///
 abstract class RecipeService extends WebService {
 
-  RecipeService(Recipes3Logger logger, BrowserClient http, Recipes3AppConfig config) : super(logger, http, config);
+  RecipeService(Recipes3Logger logger, Client http, Recipes3AppConfig config) : super(logger, http, config);
 
   Future<Recipe> getRecipe(int id);
   Future<Recipe> getRecipeWithHistory(int id);
@@ -32,7 +32,7 @@ abstract class RecipeService extends WebService {
 class WebRecipeService extends RecipeService {
   final Recipes3Logger _log;
 
-  WebRecipeService(this._log, BrowserClient http, Recipes3AppConfig config) : super(_log, http, config) {
+  WebRecipeService(this._log, Client http, Recipes3AppConfig config) : super(_log, http, config) {
     _log.loggerName = 'WebRecipeService';
   }
 

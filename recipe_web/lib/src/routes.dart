@@ -39,7 +39,7 @@ class Routes {
     RouteDefinition.redirect(path: '', redirectTo: paths.home.toUrl()),
     RouteDefinition(path: paths.home.path, component: defview.DefaultViewComponentNgFactory),
     RouteDefinition(path: paths.search.path, component: searchview.RecipeSearchComponentNgFactory),
-    RouteDefinition(path: paths.detail.path, component: searchview.RecipeViewComponentNgFactory),
-    RouteDefinition(path: paths.hover.path, component: searchview.RecipeViewComponentNgFactory),
+    RouteDefinition(path: paths.detail.path, component: detailview.RecipeViewComponentNgFactory),
+    RouteDefinition(path: paths.hover.path, component: hoverview.RecipeViewComponentNgFactory),
   ];
 }

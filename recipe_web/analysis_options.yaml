@@ -1,5 +1,6 @@
 analyzer:
-  strong-mode: true
+# TODO look into alternatives
+#  strong-mode: true # deprecated in Dart 2
 #   exclude:
 #     - path/to/excluded/files/**
 

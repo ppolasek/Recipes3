@@ -4,6 +4,7 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:logging/logging.dart';
+import 'package:http/browser_client.dart';
 
 // ignore: uri_has_not_been_generated
 import 'package:recipe_web/recipes3_app_component.template.dart' as recipes3;
@@ -11,9 +12,10 @@ import 'package:recipe_web/recipes3_app_component.template.dart' as recipes3;
 // ignore: uri_has_not_been_generated
 import 'main.template.dart' as self;
 
-@GenerateInjector(
+@GenerateInjector([
   routerProvidersHash, // You can use routerProviders in production
-)
+  ClassProvider(BrowserClient),
+])
 final InjectorFactory injector = self.injector$Injector;
 
 void main() {

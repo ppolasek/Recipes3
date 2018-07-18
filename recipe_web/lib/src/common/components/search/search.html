@@ -17,7 +17,7 @@
                name="searchTagInput"
                placeholder="Search by tags..."
                style="width: 180px;"
-               (input)="onTagInput($event)">
+               (input)="onTagInput(recipeTagListRef.value)">
         <div *ngFor="let temptag of recipeTags" style="display: inline-block;">
             <recipe-tag [tag]="temptag" (tagEvent)="onTagEvent($event)"></recipe-tag>
         </div>

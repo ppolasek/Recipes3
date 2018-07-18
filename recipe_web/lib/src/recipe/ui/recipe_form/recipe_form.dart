@@ -69,6 +69,7 @@ class RecipeFormComponent implements OnInit, OnDestroy {
 
   String get diagnostic => 'DIAGNOSTIC: $recipe, cookbookTitle: $cookbookTitle, cookbookName: $cookbookName';
 
+  // TODO
   @ViewChild('recipeTagListRef')
   ElementRef recipeTagListRef;
 

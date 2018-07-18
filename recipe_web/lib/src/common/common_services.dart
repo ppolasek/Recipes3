@@ -4,7 +4,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart';
-import 'package:http/browser_client.dart';
 
 import 'package:recipe_web/src/logger/logger.dart';
 import 'package:recipe_web/src/common/model.dart';
@@ -16,7 +15,7 @@ import 'package:recipe_web/src/common/model.dart';
 class WebService {
   final Recipes3Logger _log;
 
-  final BrowserClient _http;
+  final Client _http;
 
   final Recipes3AppConfig _config;
 
@@ -30,7 +29,11 @@ class WebService {
     if(s == null) {
       return false;
     }
-    return double.parse(s, (e) => null) != null;
+    try {
+      return double.parse(s) != null;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<Object> makeTheCall(String method, Object payload) async {

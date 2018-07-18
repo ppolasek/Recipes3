@@ -2,7 +2,6 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'package:angular/angular.dart';
-import 'package:angular_router/angular_router.dart';
 import 'package:recipe_web/src/common/components/dialog/dialog.dart';
 import 'package:recipe_web/src/common/model.dart';
 import 'package:recipe_web/src/common/recipes3_app_events.dart';
@@ -25,7 +24,7 @@ import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
 class RecipeViewComponent implements OnInit {
   final Recipes3Logger _log;
   final RecipesAppEvents _recipeEvents;
-  final RouteParams _routeParams;
+//  final RouteParams _routeParams;
   final RecipeService _recipeService;
 
   @Input()
@@ -34,18 +33,26 @@ class RecipeViewComponent implements OnInit {
   @ViewChild('editRecipeDialog')
   DialogComponent editRecipeDialogComp;
 
-  RecipeViewComponent(this._log, this._recipeService, this._recipeEvents, this._routeParams);
+  RecipeViewComponent(this._log, this._recipeService, this._recipeEvents); // , this._routeParams
 
   ngOnInit() async {
     _log.loggerName = 'RecipeViewComponent';
-    var _id = _routeParams?.get('id');
-    _log.fine('ngOnInit() _id = $_id');
-
-    if (_id != null) {
-        var id = int.parse(_id, onError: (_) => null);
-        _log.fine('ngOnInit() id = $id');
-        recipe = await _recipeService.getRecipe(id);
-    }
+    // TODO need to get the id from RouteParams - see example code online
+//    var _id = _routeParams?.get('id');
+//    _log.fine('ngOnInit() _id = $_id');
+//
+//    if (_id != null) {
+//        int id;
+//        try {
+//          id = int.parse(_id);
+//        } catch (e) {
+//          id = -1;
+//        }
+//        _log.fine('ngOnInit() id = $id');
+//        if (id >= 0) {
+//          recipe = await _recipeService.getRecipe(id);
+//        }
+//    }
   }
 
   void onRecipeSaved(var event) {

@@ -4,7 +4,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:angular/angular.dart';
-import 'package:http/browser_client.dart';
+import 'package:http/http.dart';
 
 import 'package:recipe_web/src/common/model.dart';
 
@@ -12,7 +12,7 @@ import 'package:recipe_web/src/common/model.dart';
 ///
 class LoggerService {
 
-//  LoggerService(Recipes3Logger logger, BrowserClient http, Recipes3AppConfig config) : super(logger, http, config);
+//  LoggerService(Recipes3Logger logger, Client http, Recipes3AppConfig config) : super(logger, http, config);
 
   Future<Null> log(String loggerName, DateTime logTime, String level, message, Object error, StackTrace stackTrace) => new Future(() => null);
 }
@@ -21,7 +21,7 @@ class LoggerService {
 ///
 @Injectable()
 class WebLoggerService extends LoggerService {
-  final BrowserClient _http;
+  final Client _http;
 
   final Recipes3AppConfig _config;
 
