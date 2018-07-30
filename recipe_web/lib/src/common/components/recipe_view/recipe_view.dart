@@ -1,13 +1,17 @@
 // Copyright (c) 2017, ppolasek. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
+import 'dart:async';
+
 import 'package:angular/angular.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:recipe_web/src/common/components/dialog/dialog.dart';
 import 'package:recipe_web/src/common/model.dart';
 import 'package:recipe_web/src/common/recipes3_app_events.dart';
 import 'package:recipe_web/src/logger/logger.dart';
 import 'package:recipe_web/src/recipe/common/recipe_service.dart';
 import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
+import 'package:recipe_web/src/route_paths.dart' as paths;
 
 @Component(
   selector: 'recipe-view',
@@ -21,12 +25,12 @@ import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
   providers: const [
   ],
 )
-class RecipeViewComponent implements OnInit {
+class RecipeViewComponent implements OnInit, OnActivate {
   final Recipes3Logger _log;
   final RecipesAppEvents _recipeEvents;
 //  final RouteParams _routeParams;
   final RecipeService _recipeService;
-
+  
   @Input()
   Recipe recipe = null;
 
@@ -55,6 +59,14 @@ class RecipeViewComponent implements OnInit {
 //    }
   }
 
+  @override
+  Future<void> onActivate(_, RouterState current) async {
+    _log.fine('onActivate()');
+
+    final id = paths.getId(current.parameters);
+    if (id != null) recipe = await _recipeService.getRecipe(id);
+  }
+  
   void onRecipeSaved(var event) {
     _log.fine('onRecipeSaved() event = $event');
     if (event != null && event['recipe'] != null) {

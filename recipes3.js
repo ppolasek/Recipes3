@@ -37,8 +37,8 @@ try {
                     console.log('MongoDb server startup complete');
 
                     // start the web server
-                    var childProcess = exec('cd recipe_web; pub serve web --port=58731', function (err, stdout, stderr) {
-                        logger.debug('starting pub serve. err:' + err);
+                    var childProcess = exec('cd recipe_web; webdev serve web --port=58731', function (err, stdout, stderr) {
+                        logger.debug('starting webdev serve. err:' + err);
                         if (err) {
                             logger.error('Error: ' + err.message);
                         }

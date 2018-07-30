@@ -17,3 +17,8 @@ final search = RoutePath(path: 'search');
 //final hover = RoutePath(path: 'hover');
 final detail = RoutePath(path: '${detail.path}/:$idParam');
 final hover = RoutePath(path: '${hover.path}/:$idParam');
+
+int getId(Map<String, String> parameters) {
+  final id = parameters[idParam];
+  return id == null ? null : int.tryParse(id);
+}
