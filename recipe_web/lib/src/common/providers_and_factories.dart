@@ -7,7 +7,7 @@
 //import 'package:recipe_web/src/logger/logger_service.dart';
 //import 'package:recipe_web/src/common/model.dart';
 
-//LoggerService loggerServiceFactory(Recipes3Logger logger, Client http, Recipes3AppConfig config) =>
+//LoggerService loggerServiceFactory(Recipes3Logger logger, BrowserClient http, Recipes3AppConfig config) =>
 //    new WebLoggerService(logger, http, config);
 //
 //const loggerServiceProvider = const Provider(LoggerService,

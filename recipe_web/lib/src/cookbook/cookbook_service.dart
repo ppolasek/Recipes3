@@ -2,6 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'package:http/browser_client.dart';
 import 'package:http/http.dart';
 import 'package:angular/angular.dart';
 
@@ -13,7 +14,7 @@ import 'package:recipe_web/src/common/common_services.dart';
 ///
 class CookbookService extends WebService {
 
-  CookbookService(Recipes3Logger logger, Client http, Recipes3AppConfig config) : super(logger, http, config) {}
+  CookbookService(Recipes3Logger logger, BrowserClient http, Recipes3AppConfig config) : super(logger, http, config) {}
 
   Future<List<Cookbook>> getAllCookbooks() => new Future(() => null);
   Future<Cookbook> getCookbookById(int cookbookId) => new Future(() => null);
@@ -28,7 +29,7 @@ class CookbookService extends WebService {
 class WebCookbookService extends WebService implements CookbookService {
   final Recipes3Logger _log;
 
-  WebCookbookService(this._log, Client http, Recipes3AppConfig config) : super(_log, http, config) {
+  WebCookbookService(this._log, BrowserClient http, Recipes3AppConfig config) : super(_log, http, config) {
     _log.loggerName = 'WebCookbookService';
   }
 

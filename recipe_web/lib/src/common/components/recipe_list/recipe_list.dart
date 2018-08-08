@@ -5,7 +5,7 @@ import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
-import 'package:recipe_web/src/route_paths.dart' as paths;
+import 'package:recipe_web/src/route_paths.dart';
 
 import 'package:recipe_web/src/common/components/selector_directive.dart';
 import 'package:recipe_web/src/common/model.dart';
@@ -108,7 +108,7 @@ class RecipeListComponent implements OnInit {
         _selector.lastFired = _selector.hoveredRecipe;
         //      _recipeEvents.hoverRecipe(_selector.hoveredRecipe);
 //        _router.navigate(['/Hover', { 'id': _selector.hoveredRecipe.id.toString() }]);
-        _router.navigate(paths.hover.toUrl(parameters: {paths.idParam: _selector.hoveredRecipe.id.toString() } ));
+        _router.navigate(RoutePaths.hover.toUrl(parameters: {idParam: _selector.hoveredRecipe.id.toString() } ));
       } else if (_selector.hoveredRecipe != null) {
         _log.fine('_showHoveredRecipe() already fired event for $_selector.hoveredRecipe');
       }
@@ -124,7 +124,7 @@ class RecipeListComponent implements OnInit {
 //    if (recipe != null && recipe.id != _lastFired?.id) {
       _selector.lastFired = recipe;
 //      _router.navigate(['/Detail', {'id': recipe.id.toString()}]);
-      _router.navigate(paths.detail.toUrl(parameters: {paths.idParam: recipe.id.toString() } ));
+      _router.navigate(RoutePaths.detail.toUrl(parameters: {idParam: recipe.id.toString() } ));
       _recipeEvents.viewRecipe(recipe);
 //    } else if (recipe != null) {
 //      _log.fine('_showClickedRecipe() already fired event for $recipe');

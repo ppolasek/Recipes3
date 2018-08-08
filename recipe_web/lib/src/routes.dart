@@ -1,21 +1,21 @@
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
-// ignore: uri_has_not_been_generated
-import 'package:recipe_web/src/common/components/default_view/default_view.template.dart' as defview;
+import 'route_paths.dart';
 
 // ignore: uri_has_not_been_generated
-import 'package:recipe_web/src/common/components/search/search.template.dart' as searchview;
+import 'package:recipe_web/src/common/components/default_view/default_view.template.dart' as defview_template;
 
 // ignore: uri_has_not_been_generated
-import 'package:recipe_web/src/common/components/recipe_view/recipe_view.template.dart' as detailview;
+import 'package:recipe_web/src/common/components/search/search.template.dart' as searchview_template;
 
 // ignore: uri_has_not_been_generated
-import 'package:recipe_web/src/common/components/recipe_view/recipe_view.template.dart' as hoverview;
+import 'package:recipe_web/src/common/components/recipe_view/recipe_view.template.dart' as detailview_template;
 
-import 'route_paths.dart' as paths;
-//import 'hero_list_component.template.dart' as hlct;
+// ignore: uri_has_not_been_generated
+import 'package:recipe_web/src/common/components/recipe_view/recipe_view.template.dart' as hoverview_template;
 
+export 'route_paths.dart';
 
 @Injectable()
 class Routes {
@@ -28,18 +28,17 @@ class Routes {
 
  */
 
-//  RoutePath get heroes => paths.heroes;
-  RoutePath get home => paths.home;
-  RoutePath get search => paths.search;
-  RoutePath get detail => paths.detail;
-  RoutePath get hover => paths.hover;
+//  RoutePath get home =>   RoutePaths.home;
+//  RoutePath get search => RoutePaths.search;
+//  RoutePath get detail => RoutePaths.detail;
+//  RoutePath get hover => RoutePaths.hover;
 
   final List<RouteDefinition> all = [
 //    RouteDefinition(path: paths.heroes.path, component: hlct.HeroListComponentNgFactory),
-    RouteDefinition.redirect(path: '', redirectTo: paths.home.toUrl()),
-    RouteDefinition(path: paths.home.path, component: defview.DefaultViewComponentNgFactory),
-    RouteDefinition(path: paths.search.path, component: searchview.RecipeSearchComponentNgFactory),
-    RouteDefinition(path: paths.detail.path, component: detailview.RecipeViewComponentNgFactory),
-    RouteDefinition(path: paths.hover.path, component: hoverview.RecipeViewComponentNgFactory),
+    RouteDefinition.redirect(path: '', redirectTo: RoutePaths.home.toUrl()),
+    RouteDefinition(routePath: RoutePaths.home,   component: defview_template.DefaultViewComponentNgFactory),
+    RouteDefinition(routePath: RoutePaths.search, component: searchview_template.RecipeSearchComponentNgFactory),
+    RouteDefinition(routePath: RoutePaths.detail, component: detailview_template.RecipeViewComponentNgFactory),
+    RouteDefinition(routePath: RoutePaths.hover,  component: hoverview_template.RecipeViewComponentNgFactory),
   ];
 }

@@ -46,6 +46,7 @@ import 'package:recipe_web/src/routes.dart';
     const Provider(RecipesAppEvents, useClass: RecipesAppEvents),
     const Provider(SelectorDirective, useClass: SelectorDirective),
   ],
+  exports: [RoutePaths, Routes],
 )
 class Recipes3AppComponent implements OnInit {
   RecipeTag sampleTag = new RecipeTag.fromValues('Mexican');

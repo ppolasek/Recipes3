@@ -6,7 +6,7 @@ import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
-import 'package:recipe_web/src/route_paths.dart' as paths;
+import 'package:recipe_web/src/route_paths.dart';
 
 import 'package:recipe_web/src/common/components/recipe_list/recipe_list.dart';
 import 'package:recipe_web/src/common/components/recipe_view/recipe_view.dart';
@@ -61,7 +61,7 @@ class RecipeSearchComponent implements OnInit {
   
   void onCloseSearchClick() {
 //    _recipeEvents.closeSearch();
-      _router.navigate(paths.home.toUrl()); 
+      _router.navigate(RoutePaths.home.toUrl()); 
   }
 
   onKey(String value) {

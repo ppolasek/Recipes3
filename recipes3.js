@@ -38,6 +38,11 @@ try {
 
                     // start the web server
                     let childProcess = exec('cd recipe_web; webdev serve web:58731', function (err, stdout, stderr) {
+                        logger.info('stdout: ' + stdout);
+                        logger.info('stderr: ' + stderr);
+                        console.log(stdout);
+                        console.log(stderr);
+                        
                         logger.debug('starting webdev serve. err:' + err);
                         if (err) {
                             logger.error('Error: ' + err.message);

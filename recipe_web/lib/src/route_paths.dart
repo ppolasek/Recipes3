@@ -11,12 +11,15 @@ import 'package:angular_router/angular_router.dart';
 
 const idParam = 'id';
 
-final home = RoutePath(path: 'home');
-final search = RoutePath(path: 'search');
-//final detail = RoutePath(path: 'detail');
-//final hover = RoutePath(path: 'hover');
-final detail = RoutePath(path: '${detail.path}/:$idParam');
-final hover = RoutePath(path: '${hover.path}/:$idParam');
+class RoutePaths {
+  static final home = RoutePath(path: 'home');
+  static final search = RoutePath(path: 'search');
+//  static final detail = RoutePath(path: 'detail');
+//  static final hover = RoutePath(path: 'hover');
+
+  static final detail = RoutePath(path: 'detail/:$idParam');
+  static final hover = RoutePath(path: 'hover/:$idParam'); 
+}
 
 int getId(Map<String, String> parameters) {
   final id = parameters[idParam];
