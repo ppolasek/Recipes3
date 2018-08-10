@@ -66,7 +66,8 @@ class Recipe extends DomainCommon {
     return jsonMap;
   }
 
-  Recipe.fromJson(Map jsonMap) {
+//  Recipe.fromJson(Map<dynamic, dynamic> jsonMap) {
+  Recipe.fromJson(dynamic jsonMap) {
     if (jsonMap['id'] != null)      this.id      = jsonMap['id'];
     if (jsonMap['version'] != null) this.version = jsonMap['version'];
     if (jsonMap['recipeName'] != null) this.recipeName = jsonMap['recipeName'];
@@ -79,7 +80,8 @@ class Recipe extends DomainCommon {
     if (jsonMap['recipeTags'] != null) this.recipeTags = RecipeTag.fromList(jsonMap['recipeTags']);
   }
 
-  static List<Recipe> fromList(List<Map> jsonList) {
+//  static List<Recipe> fromList(List<Map<dynamic, dynamic>> jsonList) {
+  static List<Recipe> fromList(dynamic jsonList) {
     var returnList = <Recipe>[];
     if (jsonList is List) {
       jsonList.forEach((map) => returnList.add(new Recipe.fromJson(map)));
@@ -114,13 +116,15 @@ class RecipeTag extends DomainCommon {
     return jsonMap;
   }
 
-  RecipeTag.fromJson(Map jsonMap) {
+//  RecipeTag.fromJson(Map jsonMap) {
+  RecipeTag.fromJson(dynamic jsonMap) {
     if (jsonMap['id'] != null)      this.id      = jsonMap['id'];
     if (jsonMap['version'] != null) this.version = jsonMap['version'];
     if (jsonMap['tagName'] != null) this.tagName = jsonMap['tagName'];
   }
 
-  static List<RecipeTag> fromList(List<Map> jsonList) {
+//  static List<RecipeTag> fromList(List<Map<dynamic, dynamic>> jsonList) {
+  static List<RecipeTag> fromList(dynamic jsonList) {
     var returnList = <RecipeTag>[];
     if (jsonList is List) {
       jsonList.forEach((map) => returnList.add(new RecipeTag.fromJson(map)));

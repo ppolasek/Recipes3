@@ -26,13 +26,15 @@ class Cookbook extends DomainCommon {
     return jsonMap;
   }
 
-  Cookbook.fromJson(Map jsonMap) {
+//  Cookbook.fromJson(Map jsonMap) {
+  Cookbook.fromJson(dynamic jsonMap) {
     if (jsonMap['id'] != null)      this.id      = jsonMap['id'];
     if (jsonMap['version'] != null) this.version = jsonMap['version'];
     if (jsonMap['name'] != null)    this.name    = jsonMap['name'];
   }
 
-  static List<Cookbook> fromList(List<Map> jsonList) {
+//  static List<Cookbook> fromList(List<Map<dynamic, dynamic>> jsonList) {
+  static List<Cookbook> fromList(dynamic jsonList) {
     var returnList = <Cookbook>[];
     if (jsonList is List) {
       jsonList.forEach((map) => returnList.add(new Cookbook.fromJson(map)));

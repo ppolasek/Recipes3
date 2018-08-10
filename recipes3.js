@@ -37,35 +37,35 @@ try {
                     console.log('MongoDb server startup complete');
 
                     // start the web server
-                    let childProcess = exec('cd recipe_web; webdev serve web:58731', function (err, stdout, stderr) {
-                        logger.info('stdout: ' + stdout);
-                        logger.info('stderr: ' + stderr);
-                        console.log(stdout);
-                        console.log(stderr);
-                        
-                        logger.debug('starting webdev serve. err:' + err);
-                        if (err) {
-                            logger.error('Error: ' + err.message);
-                            console.log('Error: ' + err.message);
+                    // let childProcess = exec('cd recipe_web; webdev serve web:58731', function (err, stdout, stderr) {
+                    //     logger.info('stdout: ' + stdout);
+                    //     logger.info('stderr: ' + stderr);
+                    //     console.log(stdout);
+                    //     console.log(stderr);
+                    //    
+                    //     logger.debug('starting webdev serve. err:' + err);
+                    //     if (err) {
+                    //         logger.error('Error: ' + err.message);
+                    //         console.log('Error: ' + err.message);
+                    //
+                    //         // logger.error('Error status: ' + err.status);
+                    //         // console.log('Error status: ' + err.status);
+                    //         //
+                    //         // logger.error('Error stderr: ' + err.stderr.toString());
+                    //         // console.log('Error stderr: ' + err.stderr.toString());
+                    //         //
+                    //         // logger.error('Error stdout: ' + err.stdout.toString());
+                    //         // console.log('Error stdout: ' + err.stdout.toString());
+                    //     }
+                    // });
 
-                            // logger.error('Error status: ' + err.status);
-                            // console.log('Error status: ' + err.status);
-                            //
-                            // logger.error('Error stderr: ' + err.stderr.toString());
-                            // console.log('Error stderr: ' + err.stderr.toString());
-                            //
-                            // logger.error('Error stdout: ' + err.stdout.toString());
-                            // console.log('Error stdout: ' + err.stdout.toString());
-                        }
-                    });
-
-                    logger.info('Web Server started on port 58731');
-                    console.log('Web Server started on port 58731');
+                    // logger.info('Web Server started on port 58731');
+                    // console.log('Web Server started on port 58731');
                     
-                    logger.info('Web Server childProcess pid = ' + childProcess.pid);
-                    console.log('Web Server childProcess pid = ' + childProcess.pid);
+                    // logger.info('Web Server childProcess pid = ' + childProcess.pid);
+                    // console.log('Web Server childProcess pid = ' + childProcess.pid);
                     
-                    console.log('The application may be opened at http://localhost:58731/index.html');
+                    // console.log('The application may be opened at http://localhost:58731/index.html');
                 }
             });
         }

@@ -37,7 +37,7 @@ class WebService {
     }
   }
 
-  Future<Object> makeTheCall(String method, Object payload) async {
+  Future<dynamic> makeTheCall(String method, Object payload) async {
 //    _log.fine('makeTheCall() _config.serverUrl = ${_config.serverUrl}');
 //    _log.fine('makeTheCall() _config.contextPath = ${_config.contextPath}');
 //    _log.fine('makeTheCall() _config.servletPath = ${_config.servletPath}');
