@@ -79,31 +79,26 @@ class RecipeSearchComponent implements OnInit {
     }
   }
 
-  /// Fires when an input value appears, but ignore those not in the dropdown
-  /// list, as those are manual entries from the keyboard.
-  void onTagInput(var value) {
+  void onTagInput(String value) {
     _log.fine('onTagInput() value = $value');
 //    _log.fine('onTagInput() event.target.value = ${event.target.value}');
 //    _log.fine('onTagInput() recipeTagListRef.nativeElement.value = ${recipeTagListRef.nodeValue}');
 
-  // TODO pass a string value instead of the entire event, but it still needs to be able to be set to null in code
-//    if (allTags != null && allTags.isNotEmpty) {
-//      var tempTag = allTags.firstWhere((rtag) => rtag.tagName == recipeTagListRef.nativeElement.value, orElse: () => null);
-//
-//      if (tempTag != null) {
-//        _log.fine('onTagInput() this is from the dropdown. keeping ${recipeTagListRef.nativeElement.value} & clearing the selection');
-//
-//        // this is a tag from the dropdown list, so keep it as the selected item
-//        recipeTags.add(tempTag);
-//        // perform a search when a tag has been selected
-//        _doSearch();
-//
-//        // and remove the tag from the selection
-//        allTags.remove(tempTag);
-//
-//        recipeTagListRef.nativeElement.value = null;
-//      }
-//    }
+    if (allTags != null && allTags.isNotEmpty) {
+      var tempTag = allTags.firstWhere((rtag) => rtag.tagName == value, orElse: () => null);
+      _log.fine('onTagInput() tempTag = $tempTag');
+
+      if (tempTag != null) {
+
+        // this is a tag from the dropdown list, so keep it as the selected item
+        recipeTags.add(tempTag);
+        // perform a search when a tag has been selected
+        _doSearch();
+
+        // and remove the tag from the selection
+        allTags.remove(tempTag);
+      }
+    }
   }
 
   /// handle events related to tags being added & removed from this recipe.
