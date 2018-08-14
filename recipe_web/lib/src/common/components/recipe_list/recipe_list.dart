@@ -56,23 +56,20 @@ class RecipeListComponent implements OnInit {
   }
 
   /// The user moved over the recipe, so remember it in case they hover long enough
-  void onMouseOver(var event) {
-//    _log.fine('onMouseOver()');
+  void onMouseOver(String displayName) {
+    _log.fine('onMouseOver() displayName = $displayName');
     _selector.timer = new Timer(new Duration(milliseconds: 1000), _showHoveredRecipe);
-
-    var nodeText = event?.target?.childNodes?.first?.toString()?.trim();
-    var displayName = nodeText.substring(nodeText.indexOf(' ') + 1);
 
     // need to keep track of the recipe being hovered over, so it can be displayed when the timer fires off
     if (recipeList != null) {
       _selector.hoveredRecipe = recipeList.firstWhere((temp) => temp.recipeName.trim() == displayName, orElse: () => null);
-//      _log.finest('onMouseOver() _hoveredRecipe = $_hoveredRecipe');
+      _log.finest('onMouseOver() _selector.hoveredRecipe = ${_selector.hoveredRecipe}');
     }
   }
 
   /// The user move off a recipe, so cancel the timer for showing that one recipe
-  void onMouseOut(var event) {
-//    _log.fine('onMouseOut()');
+  void onMouseOut() {
+    _log.fine('onMouseOut()');
 
     if (_selector.timer != null && _selector.timer.isActive) {
       _selector.timer.cancel();
@@ -80,25 +77,22 @@ class RecipeListComponent implements OnInit {
   }
 
   /// The user specifically clicked on the recipe, so show it
-  void onMouseClick(var event) {
+  void onMouseClick(String displayName) {
 //    _log.fine('onMouseClick()');
     if (_selector.timer != null && _selector.timer.isActive) {
       _selector.timer.cancel();
     }
 
-    var nodeText = event?.target?.childNodes?.first?.toString()?.trim();
-    var displayName = nodeText.substring(nodeText.indexOf(' ') + 1);
-
     if (recipeList != null) {
       _selector.clickedRecipe = recipeList.firstWhere((temp) => temp.recipeName.trim() == displayName, orElse: () => null);
-//      _log.finest('onMouseClick() _clickedRecipe = ${_selector.clickedRecipe}');
+      _log.finest('onMouseClick() _clickedRecipe = ${_selector.clickedRecipe}');
       _selector.hoveredRecipe = null;
       _showClickedRecipe(_selector.clickedRecipe);
     }
   }
 
   void _showHoveredRecipe() {
-//    _log.finer('_showHoveredRecipe() _hoveredRecipe = ${_selector.hoveredRecipe}');
+    _log.finer('_showHoveredRecipe() _hoveredRecipe = ${_selector.hoveredRecipe}');
 
     if (enableHoverEvent) {
       // not navigating to the hover page, but showing it below the list
