@@ -14,17 +14,18 @@
         <span class="page-nrs" *ngIf="recipe.pageNrs != null">Page nrs. </span>
         <span>{{ recipe.pageNrs }}</span>
     </div>
-    <div style="display: inline-block;">
+    <div class="tags-head-div">
         <h4 *ngIf="recipe.recipeTags != null && recipe.recipeTags.isNotEmpty">Tags</h4>
     </div>
     <div class="tags-row">
-        <div *ngFor="let temptag of recipe.recipeTagsSorted; let idx = index" style="display: inline-block;"><span *ngIf="idx > 0">, </span>{{ temptag.tagName }}</div>
+        <div *ngFor="let temptag of recipe.recipeTagsSorted; let idx = index" class="tag-div"><span *ngIf="idx > 0">, </span>{{ temptag.tagName }}</div>
     </div>
-    <div style="display: inline-block;">
+    <div class="notes-head-div">
         <h4 *ngIf="recipe.notes != null">Notes</h4>
     </div>
     <div class="notes-div" *ngIf="recipe.notes != null">{{ recipe.notes }}</div>
 </div>
+
 <my-dialog #editRecipeDialog id="editRecipeDialog"
            heading="Edit Recipe">
     <recipe-form [recipe]="recipe"

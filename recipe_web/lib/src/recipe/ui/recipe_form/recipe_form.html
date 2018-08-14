@@ -19,7 +19,7 @@
         <div class="form-group form-group-sm">
             <label>Cookbook Name</label>
             <div class="form-inline">
-                <div [hidden]="!showCookbooks" style="display: inline;">
+                <div class="cookbook-select" [hidden]="!showCookbooks">
                     <select class="form-control" id="cookbookSelect"
                             [(ngModel)]="cookbookTitle"
                             #cookbook="ngForm" [ngClass]="setCssValidityClass(cookbook)"
@@ -28,13 +28,13 @@
                         <option *ngFor="let cookbook of cookbookList">{{cookbook.name}}</option>
                     </select>
                 </div>
-                <div style="display: inline;">
-                    <input type="text" class="form-control" id="cookbookName" style="width: 200px;"
+                <div class="new-cookbook-div">
+                    <input type="text" class="form-control new-cookbook-input" id="cookbookName"
                            placeholder="Or create a new cookbook"
                            ngControl="cookbookName"
                            [(ngModel)]="cookbookName">
                 </div>
-                <div style="display: inline;">
+                <div class="pagenr-div">
                     <input type="text" class="form-control" id="pageNrs"
                            [(ngModel)]="recipe.pageNrs"
                            ngControl="pageNrs"
@@ -55,15 +55,14 @@
     <div class="form-group form-group-sm">
         <label for="recipetags">Tags</label>
         <div class="display: inline-block;">
-            <input class="form-control" #recipeTagListRef id="recipetags"
+            <input class="form-control tag-list-input" #recipeTagListRef id="recipetags"
                    list="tagDatalist"
                    name="tagInput"
-                   style="width: 150px;"
                    [(ngModel)]="recipetag"
                    ngControl="tagListCtrl"
                    (keyup)="onTagKeyUp($event)"
                    (input)="onTagInput($event)">
-            <div *ngFor="let temptag of recipe.recipeTags" style="display: inline-block;">
+            <div *ngFor="let temptag of recipe.recipeTags" class="tag-list-div">
                 <recipe-tag [tag]="temptag" (tagEvent)="onTagEvent($event)"></recipe-tag>
             </div>
         </div>

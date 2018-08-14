@@ -4,14 +4,38 @@
  */
 
 .formcontainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .recipe-optional {
-    margin-left: 20px;
+  margin-left: 20px;
 }
 
 .recipe-input {
-    width: 200px;
+  width: 200px;
+}
+
+.cookbook-select {
+  display: inline;
+}
+
+.new-cookbook-div {
+  display: inline;
+}
+
+.new-cookbook-input {
+  width: 200px;
+}
+
+.pagenr-div {
+  display: inline;
+}
+
+.tag-list-input {
+  width: 150px;
+}
+
+.tag-list-div {
+  display: inline;
 }
