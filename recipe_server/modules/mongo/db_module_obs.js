@@ -16,7 +16,7 @@ var Rx = require('rxjs/Rx');
  */
 
 var db_url = null;
-var db_name = null
+var db_name = null;
 var _view_history = '_view_count_';
 var collection_logger = 'log_record';
 
@@ -55,7 +55,7 @@ exports.findWithQuerySortCount = function (collectionName, query, mysort, count)
 
             return _find_with_query_sort_count(client, collectionName, query, mysort, limitCount);
         });
-}
+};
 
 /**
  * Find the most viewed 'count' number of records from a collection.
@@ -137,7 +137,7 @@ exports.findMostViewed = function (collectionName, collectionForQuery, count) {
             logger.debug(finalList);
             return new Rx.Observable.of(finalList);
         });
-}
+};
 
 /**
  * Find the most recently added 'count' number of records from a collection.
@@ -172,7 +172,7 @@ exports.findAddedRecently = function (collectionName, count) {
 
             return _find_with_query_sort_count(client, collectionName, {}, mysort, limitCount);
         });
-}
+};
 
 /**
  * Delete one document in a collection.
@@ -197,7 +197,7 @@ exports.deleteById = function (collectionName, id) {
 
             return _delete_one(client, collectionName, query);
         });
-}
+};
 
 /**
  * Update one document in a collection.
@@ -222,7 +222,7 @@ exports.updateOne = function (collectionName, query, newValues) {
 
             return _update_one(client, collectionName, query, newValues);
         });
-}
+};
 
 /**
  * Retrieves a document from the given collection name matching by id,
@@ -251,7 +251,7 @@ exports.findByIdWithHistory = function (collectionName, id) {
             logger.debug(query);
             return _find_one(client, collectionName, query);
         });
-}
+};
 
 /**
  * Retrieves a document from the given collection name matching by id.
@@ -277,7 +277,7 @@ exports.findById = function (collectionName, id) {
 
             return _find_one(client, collectionName, query);
         });
-}
+};
 
 /**
  * Retrieve all documents from the given collection name.
@@ -297,7 +297,7 @@ exports.findAll = function (collectionName) {
         .flatMap(function (_) {
             return _find_all(client, collectionName);
         });
-}
+};
 
 /**
  * Insert one document into the given collection name.
@@ -325,7 +325,7 @@ exports.insertOne = function (collectionName, someobj) {
         .flatMap(function (updatedObj) {
             return _insert_one(client, collectionName, updatedObj);
         });
-}
+};
 
 /**
  * Insert a message into the log_record collection.
@@ -369,7 +369,7 @@ exports.insertLogMessage = function (message) {
                 });
             })
         });
-}
+};
 
 // ------------------------------------------------------------------------------------------------
 //
@@ -382,7 +382,7 @@ exports.insertLogMessage = function (message) {
  * @param url The database URL to connect to.
  */
     var _getMongoClient = function (url) {
-    logger.debug('db_module_obs._getMongoClient() url: ' + url);
+//    logger.debug('db_module_obs._getMongoClient() url: ' + url);
     return Rx.Observable.create(function (observer) {
         new MongoClient(url).connect(function (err, client) {
             if (err) {
@@ -403,7 +403,7 @@ exports.insertLogMessage = function (message) {
         // consumers subscribed to it and keep ConnectableObservable
         // connected as long as there is at least one consumer.
     }).publish().refCount();
-}
+};
 
 /**
  * Connect to the database, creating it if needed.
@@ -413,7 +413,7 @@ exports.insertLogMessage = function (message) {
 var _connect_to_db = function (client, dbname) {
     return Rx.Observable.create(function (observer) {
         try {
-            logger.debug('db_module_obs._connect_to_db() dbname = ' + dbname + ', client: ' + client);
+//            logger.debug('db_module_obs._connect_to_db() dbname = ' + dbname + ', client: ' + client);
             // logger.debug('db_module_obs._connect_to_db() client.runtimeType: ' + client.runtimeType);
             var db = client.db(dbname);
             // logger.debug('db_module_obs._connect_to_db() db: ' + db);
@@ -433,7 +433,7 @@ var _connect_to_db = function (client, dbname) {
         // consumers subscribed to it and keep ConnectableObservable
         // connected as long as there is at least one consumer.
     }).publish().refCount();
-}
+};
 
 
 /**
@@ -474,7 +474,7 @@ var _find_with_query_sort_count = function (client, collectionName, query, mysor
                 });
             });
         });
-}
+};
 
 /**
  * Update one document in a collection.
@@ -517,7 +517,7 @@ var _update_one = function (client, collectionName, query, newValues) {
                 });
             });
         });
-}
+};
 
 /**
  * Perform the collection operation to find one record.
@@ -554,7 +554,7 @@ var _delete_one = function (client, collectionName, query) {
                 });
             });
         });
-}
+};
 
 /**
  * Perform the collection operation to find one record.
@@ -584,7 +584,7 @@ var _find_one = function (client, collectionName, query) {
                 });
         });
     });
-}
+};
 
 /**
  * Perform the collection operation to find all records.
@@ -610,7 +610,7 @@ var _find_all = function (client, collectionName) {
                 });
         });
     });
-}
+};
 
 /**
  * Update the viewing history for a collection and specific id. This does not
@@ -652,7 +652,7 @@ var _update_history_sequence = function(client, collectionName, id) {
                 });
             });
         });
-}
+};
 
 /**
  * Update the 'id' and '_id' property of 'someobj'.
@@ -693,7 +693,7 @@ var _update_id = function(client, collectionName, someobj) {
     } else {
         return Rx.Observable.of(someobj);
     }
-}
+};
 
 /**
  * Perform the operation to insert the record.
@@ -728,7 +728,7 @@ var _insert_one = function (client, collectionName, someobj) {
                 });
             });
         });
-}
+};
 
  /**
   * Update the 'updatedOn' date.
@@ -737,7 +737,7 @@ var _insert_one = function (client, collectionName, someobj) {
      if ('updatedOn' in obj) {
          obj.updatedOn = new Date();
      }
- }
+ };
 
  /**
   * Update the 'createdOn' date.
@@ -746,7 +746,7 @@ var _insert_one = function (client, collectionName, someobj) {
      if ('createdOn' in obj) {
          obj.createdOn = new Date();
      }
- }
+ };
 
  /**
   * Update the 'version' count.
@@ -757,4 +757,4 @@ var _insert_one = function (client, collectionName, someobj) {
      } else {
          obj.version = 0;
      }
- }
+ };

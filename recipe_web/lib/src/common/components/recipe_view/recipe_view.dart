@@ -12,6 +12,7 @@ import 'package:recipe_web/src/logger/logger.dart';
 import 'package:recipe_web/src/recipe/common/recipe_service.dart';
 import 'package:recipe_web/src/recipe/ui/recipe_form/recipe_form.dart';
 import 'package:recipe_web/src/route_paths.dart' as paths;
+import 'package:recipe_web/src/route_paths.dart';
 
 @Component(
   selector: 'recipe-view',
@@ -28,16 +29,16 @@ import 'package:recipe_web/src/route_paths.dart' as paths;
 class RecipeViewComponent implements OnInit, OnActivate {
   final Recipes3Logger _log;
   final RecipesAppEvents _recipeEvents;
-//  final RouteParams _routeParams;
   final RecipeService _recipeService;
-  
+  final Router _router;
+
   @Input()
   Recipe recipe = null;
 
   @ViewChild('editRecipeDialog')
   DialogComponent editRecipeDialogComp;
 
-  RecipeViewComponent(this._log, this._recipeService, this._recipeEvents); // , this._routeParams
+  RecipeViewComponent(this._log, this._recipeService, this._recipeEvents, this._router); // , this._routeParams
 
   ngOnInit() async {
     _log.loggerName = 'RecipeViewComponent';
@@ -81,6 +82,7 @@ class RecipeViewComponent implements OnInit, OnActivate {
   void onDeleteClick() {
     _recipeService.deleteRecipe(recipe.id).then((success) {
       if (success) _recipeEvents.recipeDeleted(recipe.id);
+      _router.navigate(RoutePaths.home.toUrl());
     });
   }
 }

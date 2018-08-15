@@ -2,6 +2,7 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
+import 'dart:html';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:recipe_web/src/common/components/dialog/dialog.dart';
@@ -166,7 +167,7 @@ class RecipeFormComponent implements OnInit, OnDestroy {
   void onTagKeyUp(var event) {
     _log.fine('onTagKeyUp() recipetag = $recipetag, event.runtimeType = ${event.runtimeType}');
 
-    if (event.keyCode == 13 || event.which == 13) {
+    if (event is KeyboardEvent && (event.keyCode == 13 || event.which == 13)) {
       if (recipetag != null && recipetag.isNotEmpty) {
         _log.fine('onTagKeyUp() enter key pressed. keeping $recipetag & clearing the selection');
 
