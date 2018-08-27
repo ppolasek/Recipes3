@@ -42,22 +42,6 @@ class RecipeViewComponent implements OnInit, OnActivate {
 
   ngOnInit() async {
     _log.loggerName = 'RecipeViewComponent';
-    // TODO need to get the id from RouteParams - see example code online
-//    var _id = _routeParams?.get('id');
-//    _log.fine('ngOnInit() _id = $_id');
-//
-//    if (_id != null) {
-//        int id;
-//        try {
-//          id = int.parse(_id);
-//        } catch (e) {
-//          id = -1;
-//        }
-//        _log.fine('ngOnInit() id = $id');
-//        if (id >= 0) {
-//          recipe = await _recipeService.getRecipe(id);
-//        }
-//    }
   }
 
   @override

@@ -18,7 +18,7 @@
         <h4 *ngIf="recipe.recipeTags != null && recipe.recipeTags.isNotEmpty">Tags</h4>
     </div>
     <div class="tags-row">
-        <div *ngFor="let temptag of recipe.recipeTagsSorted; let idx = index" class="tag-div"><span *ngIf="idx > 0">, </span>{{ temptag.tagName }}</div>
+        <div *ngFor="let temptag of recipe.recipeTagsSorted; let idx = index" class="tag-div"><span *ngIf="idx > 0">,&nbsp;</span>{{ temptag.tagName.trim() }}</div>
     </div>
     <div class="notes-head-div">
         <h4 *ngIf="recipe.notes != null">Notes</h4>

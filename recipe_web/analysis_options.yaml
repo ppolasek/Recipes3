@@ -1,8 +1,7 @@
 analyzer:
-# TODO look into alternatives
-#  strong-mode: true # deprecated in Dart 2
-#   exclude:
-#     - path/to/excluded/files/**
+  exclude: [build/**, test/*.g.dart] # TODO(https://github.com/dart-lang/site-webdev/issues/1715): drop *.g.dart
+  plugins:
+  - angular
 
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:

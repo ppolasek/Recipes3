@@ -3,17 +3,21 @@
  * is governed by a BSD-style license that can be found in the LICENSE file.
  */
 
-
 .recipe-tag {
-    border: 2px solid gray;
-    border-radius: 15px;
-    display: inline-block;
+  border: 1px solid gray;
+  border-radius: 15px;
+  display: inline-block;
+  margin: 2px 2px 2px 0;
 }
 
 .recipe-content {
-    margin: 2px 6px;
+  margin: 0 3px 0 10px;
 }
 
 .recipe-tag-name {
-    margin-right: 10px;
+  margin-right: 10px;
+}
+
+.recipe-tag-close {
+  height: 19px;
 }
