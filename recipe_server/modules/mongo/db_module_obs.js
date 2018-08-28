@@ -3,10 +3,10 @@
 // Copyright (c) 2017, Philip Polasek. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-var my_config = require('../my_config');
-var MongoClient = require('mongodb').MongoClient;
-var logger = require('../logger');
-var Rx = require('rxjs/Rx');
+let my_config = require('../my_config');
+let MongoClient = require('mongodb').MongoClient;
+let logger = require('../logger');
+let Rx = require('rxjs/Rx');
 
 /**
  * db_module_obs.js
@@ -15,10 +15,10 @@ var Rx = require('rxjs/Rx');
  * as the standard CRUD operations.
  */
 
-var db_url = null;
-var db_name = null;
-var _view_history = '_view_count_';
-var collection_logger = 'log_record';
+let db_url = null;
+let db_name = null;
+let _view_history = '_view_count_';
+let collection_logger = 'log_record';
 
 /**
  * Find documents in a collection.
@@ -36,14 +36,14 @@ exports.findWithQuerySortCount = function (collectionName, query, mysort, count)
         db_name = my_config.db_name();
     }
 
-    var limitCount;
+    let limitCount;
     if (!Number.isInteger(count)) {
         limitCount = 100;
      } else {
         limitCount = count;
      }
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .do(function (theclient) {
             logger.debug('db_module_obs.findWithQuerySortCount() got mongo client. theclient = ' + theclient.toString());
@@ -72,17 +72,17 @@ exports.findMostViewed = function (collectionName, collectionForQuery, count) {
         db_name = my_config.db_name();
     }
 
-    var limitCount;
+    let limitCount;
     if (!Number.isInteger(count) || count > 10) {
         limitCount = 10;
     } else {
         limitCount = count;
     }
 
-    var counters_key = collectionForQuery + _view_history;
-    var query = { _id: new RegExp('^' + counters_key) };
-    var ids = [];
-    var client;
+    let counters_key = collectionForQuery + _view_history;
+    let query = { _id: new RegExp('^' + counters_key) };
+    let ids = [];
+    let client;
 
     return _getMongoClient(db_url)
         .do(function (theclient) {
@@ -93,7 +93,7 @@ exports.findMostViewed = function (collectionName, collectionForQuery, count) {
             logger.debug('db_module_obs.findMostViewed() connected to the database');
             logger.debug('db_module_obs.findMostViewed() limitCount = ' + limitCount);
 
-            var mysort = { seq: -1 }; // descending
+            let mysort = { seq: -1 }; // descending
 
             return _find_with_query_sort_count(client, collectionName, query, mysort, limitCount);
         })
@@ -104,28 +104,28 @@ exports.findMostViewed = function (collectionName, collectionForQuery, count) {
             } else {
                 // the 'mostViewed' only has the id, now we need to retrieve the
                 // actual object
-                for (var i = 0; i < mostViewed.length; i++) {
-                    var id = mostViewed[i]._id.substr(counters_key.length);
+                for (let i = 0; i < mostViewed.length; i++) {
+                    let id = mostViewed[i]._id.substr(counters_key.length);
                     logger.debug('db_module_obs.findMostViewed() id = ' + id);
 
                     ids.push(parseInt(id));
                 }
 
-                var query2 = { id: { $in: ids } };
+                let query2 = { id: { $in: ids } };
                 logger.debug('db_module_obs.findMostViewed() query2:');
                 logger.debug(query2);
 
-                var fields = {};
+                let fields = {};
 
                 return _find_with_query_sort_count(client, collectionForQuery, query2, {}, limitCount);
             }
         })
         .flatMap(function (recipelist) {
             // The results are not in the correct order, so re-order them now
-            var finalList = [];
+            let finalList = [];
             if (recipelist != null && recipelist.length > 0) {
-                for (var i = 0; i < ids.length; i++) {
-                    for (var j = 0; j < recipelist.length; j++) {
+                for (let i = 0; i < ids.length; i++) {
+                    for (let j = 0; j < recipelist.length; j++) {
                         if (ids[i] === recipelist[j].id) {
                             finalList.push(recipelist[j]);
                             break;
@@ -152,14 +152,14 @@ exports.findAddedRecently = function (collectionName, count) {
         db_name = my_config.db_name();
     }
 
-    var limitCount;
+    let limitCount;
     if (!Number.isInteger(count) || count > 10) {
         limitCount = 10;
     } else {
         limitCount = count;
     }
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .flatMap(function (theclient) {
             logger.debug('db_module_obs.deleteById() got mongo client. theclient = ' + theclient.toString());
@@ -168,7 +168,7 @@ exports.findAddedRecently = function (collectionName, count) {
             logger.debug('db_module_obs.findAddedRecently() connected to the database');
             logger.debug('db_module_obs.findAddedRecently() limitCount = ' + limitCount);
 
-            var mysort = { createdOn: -1 }; // descending
+            let mysort = { createdOn: -1 }; // descending
 
             return _find_with_query_sort_count(client, collectionName, {}, mysort, limitCount);
         });
@@ -185,7 +185,7 @@ exports.deleteById = function (collectionName, id) {
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .do(function (theclient) {
             logger.debug('db_module_obs.deleteById() got mongo client. theclient = ' + theclient.toString());
@@ -193,7 +193,7 @@ exports.deleteById = function (collectionName, id) {
         })
         .flatMap(function (_) {
             logger.debug('db_module_obs.deleteById() connected to the database');
-            var query = { "id": id };
+            let query = { "id": id };
 
             return _delete_one(client, collectionName, query);
         });
@@ -211,7 +211,7 @@ exports.updateOne = function (collectionName, query, newValues) {
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .do(function (theclient) {
             logger.debug('db_module_obs.updateOne() got mongo client. theclient = ' + theclient.toString());
@@ -236,7 +236,7 @@ exports.findByIdWithHistory = function (collectionName, id) {
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     logger.debug('db_module_obs.findByIdWithHistory() getting mongo client');
     return _getMongoClient(db_url)
         .flatMap(function (theclient) {
@@ -246,7 +246,7 @@ exports.findByIdWithHistory = function (collectionName, id) {
             return _update_history_sequence(client, collectionName, id);
         })
         .flatMap(function (_) {
-            var query = { "id": id };
+            let query = { "id": id };
             logger.debug('db_module_obs.findByIdWithHistory() finding by query:');
             logger.debug(query);
             return _find_one(client, collectionName, query);
@@ -264,7 +264,7 @@ exports.findById = function (collectionName, id) {
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     logger.debug('db_module_obs.findById() getting mongo client');
     return _getMongoClient(db_url)
         .do(function (theclient) {
@@ -273,7 +273,7 @@ exports.findById = function (collectionName, id) {
         })
         .flatMap(function (_) {
             logger.debug('db_module_obs.findById() calling _find_one');
-            var query = { "id": id };
+            let query = { "id": id };
 
             return _find_one(client, collectionName, query);
         });
@@ -289,7 +289,7 @@ exports.findAll = function (collectionName) {
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .do(function (theclient) {
             client = theclient;
@@ -313,7 +313,7 @@ exports.insertOne = function (collectionName, someobj) {
     logger.debug('db_module_obs.insertOne() collectionName = %s, someobj:', collectionName);
     logger.debug(someobj);
 
-    var client;
+    let client;
     return _getMongoClient(db_url)
         .do(function (theclient) {
             logger.debug('db_module_obs.insertOne() theclient = ' + theclient);
@@ -332,15 +332,15 @@ exports.insertOne = function (collectionName, someobj) {
  * @param message The message to insert into the collection
  */
 exports.insertLogMessage = function (message) {
-    logger.debug('db_module_obs.insertLogMessage() message:');
-    logger.debug(message);
+    // logger.debug('db_module_obs.insertLogMessage() message:');
+    // logger.debug(message);
 
     if (db_url == null || db_name == null) {
         db_url = my_config.db_url();
         db_name = my_config.db_name();
     }
 
-    var client;
+    let client;
     // logger.debug('db_module_obs.insertLogMessage() getting mongo client');
     return _getMongoClient(db_url)
         .do(function (theclient) {
@@ -381,14 +381,14 @@ exports.insertLogMessage = function (message) {
  * Connect to the MongoClient.
  * @param url The database URL to connect to.
  */
-    var _getMongoClient = function (url) {
+    let _getMongoClient = function (url) {
 //    logger.debug('db_module_obs._getMongoClient() url: ' + url);
     return Rx.Observable.create(function (observer) {
         new MongoClient(url).connect(function (err, client) {
             if (err) {
                 observer.error(err);
             } else {
-                logger.debug('db_module_obs._getMongoClient() client: ' + client);
+//                logger.debug('db_module_obs._getMongoClient() client: ' + client);
                 observer.next(client);
             }
         });
@@ -410,12 +410,12 @@ exports.insertLogMessage = function (message) {
  * @param client The mongo client instance.
  * @param dbname The database name to connect to.
  */
-var _connect_to_db = function (client, dbname) {
+let _connect_to_db = function (client, dbname) {
     return Rx.Observable.create(function (observer) {
         try {
 //            logger.debug('db_module_obs._connect_to_db() dbname = ' + dbname + ', client: ' + client);
             // logger.debug('db_module_obs._connect_to_db() client.runtimeType: ' + client.runtimeType);
-            var db = client.db(dbname);
+            let db = client.db(dbname);
             // logger.debug('db_module_obs._connect_to_db() db: ' + db);
             observer.next(db);
         } catch (err) {
@@ -445,7 +445,7 @@ var _connect_to_db = function (client, dbname) {
  * @param mysort The object to control sorting of the records
  * @param limitCount The count of records to retrieve
  */
-var _find_with_query_sort_count = function (client, collectionName, query, mysort, limitCount) {
+let _find_with_query_sort_count = function (client, collectionName, query, mysort, limitCount) {
     logger.debug('db_module_obs._find_with_query_sort_count finding document in collection = ' + collectionName);
     logger.debug('db_module_obs._find_with_query_sort_count query:');
     logger.debug(query);
@@ -484,9 +484,9 @@ var _find_with_query_sort_count = function (client, collectionName, query, mysor
  * @param query The query object to search the collection with
  * @param newValues The object containing the updates
  */
-var _update_one = function (client, collectionName, query, newValues) {
-//  var myquery = { address: "Valley 345"};
-//  var newValues = { name: 'Mickey', address: 'Canyon 123' };
+let _update_one = function (client, collectionName, query, newValues) {
+//  let myquery = { address: "Valley 345"};
+//  let newValues = { name: 'Mickey', address: 'Canyon 123' };
 //
 //  db.collection('customers').updateOne(myquery, newValues, function(err, result) {
 
@@ -526,7 +526,7 @@ var _update_one = function (client, collectionName, query, newValues) {
  *        inserted
  * @param query The query object to search the collection with
  */
-var _delete_one = function (client, collectionName, query) {
+let _delete_one = function (client, collectionName, query) {
     logger.debug('db_module_obs._delete_one retrieving from collection = ' + collectionName);
     logger.debug('db_module_obs._delete_one query:');
     logger.debug(query);
@@ -563,7 +563,7 @@ var _delete_one = function (client, collectionName, query) {
  *        inserted
  * @param query The query object to search the collection with
  */
-var _find_one = function (client, collectionName, query) {
+let _find_one = function (client, collectionName, query) {
     logger.debug('db_module_obs._find_one retrieving from collection = ' + collectionName);
     logger.debug('db_module_obs._find_one query:');
     logger.debug(query);
@@ -592,7 +592,7 @@ var _find_one = function (client, collectionName, query) {
  * @param collectionName The name of the collection where the 'someobj' will be
  *        inserted
  */
-var _find_all = function (client, collectionName) {
+let _find_all = function (client, collectionName) {
     logger.debug('db_module_obs._find_all client = ' + client);
     logger.debug('db_module_obs._find_all retrieving all from collection = ' + collectionName);
     
@@ -620,7 +620,7 @@ var _find_all = function (client, collectionName) {
  *        inserted
  * @param id The 'id' of the record to be incremented.
  */
-var _update_history_sequence = function(client, collectionName, id) {
+let _update_history_sequence = function(client, collectionName, id) {
     logger.debug('db_module_obs._update_history_sequence() getting a new id value');
 
     return _connect_to_db(client, db_name)
@@ -661,7 +661,7 @@ var _update_history_sequence = function(client, collectionName, id) {
  *        inserted
  * @param someobj The object to update with the new 'id' and '_id'
  */
-var _update_id = function(client, collectionName, someobj) {
+let _update_id = function(client, collectionName, someobj) {
     if (!('id' in someobj) || someobj.id == null || someobj.id < 0) {
         logger.debug('db_module_obs._update_id() getting a new id value');
 
@@ -702,7 +702,7 @@ var _update_id = function(client, collectionName, someobj) {
  *        inserted
  * @param someobj The object to update with the new 'id' and '_id'
  */
-var _insert_one = function (client, collectionName, someobj) {
+let _insert_one = function (client, collectionName, someobj) {
     logger.debug('db_module_obs._insert_one() someobj:');
     logger.debug(someobj);
 
@@ -733,25 +733,25 @@ var _insert_one = function (client, collectionName, someobj) {
  /**
   * Update the 'updatedOn' date.
   */
- var _update_updated_on = function (obj) {
-     if ('updatedOn' in obj) {
+ let _update_updated_on = function (obj) {
+     // if ('updatedOn' in obj) {
          obj.updatedOn = new Date();
-     }
+     // }
  };
 
  /**
   * Update the 'createdOn' date.
   */
- var _update_created_on = function (obj) {
-     if ('createdOn' in obj) {
+ let _update_created_on = function (obj) {
+     // if ('createdOn' in obj) {
          obj.createdOn = new Date();
-     }
+     // }
  };
 
  /**
   * Update the 'version' count.
   */
- var _update_version = function (obj) {
+ let _update_version = function (obj) {
      if ('version' in obj && Number.isInteger(obj.version)) {
          obj.version = obj.version + 1;
      } else {
